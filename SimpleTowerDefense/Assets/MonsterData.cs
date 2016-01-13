@@ -48,5 +48,29 @@ public class MonsterData : MonoBehaviour {
                 }
 
         }
-           
+    
+   public MonsterLevel getNextLevel()
+    {
+        int currentLevelIndex = levels.IndexOf(currentLevel);
+        int maxLeveIndex = levels.Count - 1;
+        if( currentLevelIndex < maxLeveIndex)
+        {
+            return levels[currentLevelIndex + 1];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public void increaseLevel()
+    {
+        int currentLevelIndex = levels.IndexOf(currentLevel); //set current level to the level of the tower
+        if(currentLevelIndex < levels.Count - 1)
+        {
+            CurrentLevel = levels[currentLevelIndex + 1];
+        }
+    }
+
+  
     }

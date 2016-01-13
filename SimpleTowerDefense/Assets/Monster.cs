@@ -24,6 +24,22 @@ public class Monster : MonoBehaviour {
         }
 
     }
+
+    private bool canUpgradeMonster()
+    {
+        if (monster != null)
+        {
+            MonsterData monsterData = monster.GetComponent<MonsterData>();
+            MonsterLevel nextLevel = monsterData.getNextLevel();
+            if (nextLevel != null)
+            {
+                return true;
+            }
+           
+        }
+        return false;
+    }
+
     // Use this for initialization
     void Start () {
 	
