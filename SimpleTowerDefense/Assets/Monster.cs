@@ -7,22 +7,19 @@ public class Monster : MonoBehaviour {
 
     public GameObject monsterPrefab;
     private GameObject monster;
+    public GameManagerBehavior gameManager;
 
-     private bool canPlaceMonster()
+    // Use this for initialization
+    void Start()
     {
-        return monster == null;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
+
     }
 
-    void OnMouseUp()
+
+    private bool canPlaceMonster()
     {
-        if (canPlaceMonster())
-        {
-            Instantiate(monsterPrefab, transform.position, Quaternion.identity);
-
-            AudioSource audiosource = gameObject.GetComponent<AudioSource>();
-            audiosource.PlayOneShot(audiosource.clip);
-        }
-
+        return monster == null;
     }
 
     private bool canUpgradeMonster()
@@ -35,15 +32,37 @@ public class Monster : MonoBehaviour {
             {
                 return true;
             }
-           
+
         }
         return false;
     }
 
-    // Use this for initialization
-    void Start () {
-	
-	}
+    void OnMouseUp()
+    {
+        if (canPlaceMonster())
+        {
+           monster = (GameObject)
+           Instantiate(monsterPrefab, transform.position, Quaternion.identity);
+
+            AudioSource audiosource = gameObject.GetComponent<AudioSource>();
+            audiosource.PlayOneShot(audiosource.clip);
+            gameManager.Gold -= monster.GetComponent<MonsterData>().CurrentLevel.cost;
+        }
+         else if(canUpgradeMonster())
+             {
+             monster.GetComponent<MonsterData>().increaseLevel();
+             AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+             audioSource.PlayOneShot(audioSource.clip);
+             //ToDo Deduct gold
+             gameManager.Gold -= monster.GetComponent<MonsterData>().CurrentLevel.cost;
+
+         }
+        
+    }
+
+   
+
+  
 	
 	// Update is called once per frame
 	void Update () {
