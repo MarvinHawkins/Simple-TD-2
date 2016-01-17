@@ -1,0 +1,21 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class SpawnEnemies : MonoBehaviour {
+
+
+    public GameObject[] waypoints;
+    public GameObject testEnemyPrefab;
+
+    // Use this for initialization
+    void Start () {
+
+        Instantiate(testEnemyPrefab).GetComponent<MoveEnemy>().waypoints = waypoints; Instantiate(testEnemyPrefab).GetComponent<MoveEnemy>().waypoints = waypoints;
+
+    }
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+}

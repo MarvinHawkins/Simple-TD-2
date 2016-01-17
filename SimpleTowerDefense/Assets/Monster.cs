@@ -19,18 +19,21 @@ public class Monster : MonoBehaviour {
 
     private bool canPlaceMonster()
     {
-        return monster == null;
+        int cost = monsterPrefab.GetComponent<MonsterData>().levels[0].cost;
+        return monster == null && gameManager.Gold >= cost;
     }
 
     private bool canUpgradeMonster()
     {
         if (monster != null)
         {
+           
             MonsterData monsterData = monster.GetComponent<MonsterData>();
             MonsterLevel nextLevel = monsterData.getNextLevel();
+
             if (nextLevel != null)
             {
-                return true;
+                return gameManager.Gold >= nextLevel.cost;
             }
 
         }
