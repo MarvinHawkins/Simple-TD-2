@@ -13,11 +13,30 @@ public class MoveEnemy : MonoBehaviour {
     void Start () {
 
         lastWaypointSwitchTime = Time.time;
-
+}
+    private void RotateIntoMoveDirection()
+    {
+        //1 it calculates bugs current movement
+        Vector3 newStartPosition = waypoints[currentWaypoint].transform.position;
+        Vector3 newEndPosition = waypoints[currentWaypoint + 1].transform.position;
+        Vector3 newDirection = (newEndPosition - newStartPosition);
+        //2
+        float x = newDirection.x;
+        float y = newDirection.y;
+        float rotationAngle = Mathf.Atan2(y, x) * 180 / Mathf.PI;
+        //3
+        GameObject sprite = (GameObject)
+            gameObject.transform.FindChild("Sprite").gameObject;
+        sprite.transform.rotation =
+            Quaternion.AngleAxis(rotationAngle, Vector3.forward);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+
+   
+
+
+    // Update is called once per frame
+    void Update () {
 
         // 1 
         Vector3 startPosition = waypoints[currentWaypoint].transform.position;
@@ -35,7 +54,7 @@ public class MoveEnemy : MonoBehaviour {
                 // 3.a 
                 currentWaypoint++;
                 lastWaypointSwitchTime = Time.time;
-                // TODO: Rotate into move direction
+                RotateIntoMoveDirection();
             }
             else {
                 // 3.b 
@@ -44,6 +63,10 @@ public class MoveEnemy : MonoBehaviour {
                 AudioSource audioSource = gameObject.GetComponent<AudioSource>();
                 AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
                 // TODO: deduct health
+
+                GameManagerBehavior gameManager =
+                    GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
+                gameManager.Health -= 1; //Remove the health
             }
         }
 

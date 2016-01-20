@@ -652,7 +652,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!114 &254346674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1071,7 +1071,7 @@ Transform:
   - {fileID: 1784974627}
   - {fileID: 835470583}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 15
 --- !u!82 &377161750
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2068,6 +2068,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1585700359}
+  - 114: {fileID: 1585700360}
   m_Layer: 0
   m_Name: Road
   m_TagString: Untagged
@@ -2093,6 +2094,39 @@ Transform:
   - {fileID: 714625521}
   m_Father: {fileID: 0}
   m_RootOrder: 16
+--- !u!114 &1585700360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1585700358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b04d48fe54938e42b35528710542955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 1188670106}
+  - {fileID: 2089882511}
+  - {fileID: 351192883}
+  - {fileID: 1423786048}
+  - {fileID: 940592211}
+  - {fileID: 714625520}
+  testEnemyPrefab: {fileID: 197334, guid: f561f313e37464b2d982d25715bb43cf, type: 2}
+  waves:
+  - enemyPrefab: {fileID: 197334, guid: f561f313e37464b2d982d25715bb43cf, type: 2}
+    spawnInterval: 2.5
+    maxEnemies: 5
+  - enemyPrefab: {fileID: 197334, guid: 614f4dc81f2ad4dd0bb9a759c0274631, type: 2}
+    spawnInterval: 2
+    maxEnemies: 10
+  - enemyPrefab: {fileID: 197334, guid: f561f313e37464b2d982d25715bb43cf, type: 2}
+    spawnInterval: 2
+    maxEnemies: 15
+  - enemyPrefab: {fileID: 197334, guid: f561f313e37464b2d982d25715bb43cf, type: 2}
+    spawnInterval: 1
+    maxEnemies: 5
+  timeBetweenWaves: 1
 --- !u!1001 &1659519887
 Prefab:
   m_ObjectHideFlags: 0
@@ -2588,7 +2622,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92608b7cb726dce47aa24cc936fe25ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveLabel: {fileID: 1927656023}
   goldLabel: {fileID: 2132922819}
+  nextWaveLabels:
+  - {fileID: 26303382}
+  - {fileID: 1267819980}
+  gameOver: 0
+  wave: 2
+  healthLabel: {fileID: 614529710}
+  healthIndicator: []
 --- !u!4 &1923820745
 Transform:
   m_ObjectHideFlags: 0
