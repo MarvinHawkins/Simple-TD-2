@@ -8,6 +8,10 @@ public class MonsterLevel
     //Stores class and other info
     public int cost;
     public GameObject visualization;
+
+	
+	public GameObject bullet;
+	public float fireRate;
 }
 
 public class MonsterData : MonoBehaviour {
