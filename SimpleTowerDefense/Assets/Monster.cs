@@ -8,11 +8,17 @@ public class Monster : MonoBehaviour {
     public GameObject monsterPrefab;
     private GameObject monster;
     public GameManagerBehavior gameManager;
+	public GameObject buildPrefab;
+	public GameObject buildPanel;
+
+
 
     // Use this for initialization
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
+		buildPanel = Instantiate(buildPrefab) as GameObject;
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
+		buildPanel.SetActive(false); 
 
     }
 
@@ -41,10 +47,14 @@ public class Monster : MonoBehaviour {
     }
 
     void OnMouseUp()
+
     {
-        if (canPlaceMonster())
+		buildPanel.SetActive(true);
+
+		if (canPlaceMonster())
         {
-           monster = (GameObject)
+			//buildPanel.SetActive(true);
+			monster = (GameObject)
            Instantiate(monsterPrefab, transform.position, Quaternion.identity);
 
             AudioSource audiosource = gameObject.GetComponent<AudioSource>();
